@@ -1,0 +1,16 @@
+import transformers
+from summarizer import Summarizer
+
+MODEL_NAME = 'distilroberta-base'
+
+custom_config = transformers.AutoConfig.from_pretrained(MODEL_NAME)
+custom_config.output_hidden_states=True
+custom_tokenizer = transformers.AutoTokenizer.from_pretrained(MODEL_NAME)
+custom_model = transformers.AutoModel.from_pretrained(MODEL_NAME, config=custom_config).half()
+
+model = Summarizer(custom_model=custom_model, custom_tokenizer=custom_tokenizer)
+
+document = '''   '''
+result = model(document)
+print('Summary:")
+print(result)

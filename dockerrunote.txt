@@ -1,0 +1,5 @@
+docker build . -f Dockerfile -t tf_6485
+docker run -it -v ~/notebooks:/home/shared -p 8888:6485 --gpus '"device=4:1"' 331676cf277c
+
+
+docker run -it --gpus '"device=4:1"' -p 6485:8888 -v ~/work:/workspace tf_6485
